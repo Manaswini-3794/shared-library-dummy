@@ -7,8 +7,9 @@ def checkoutRepo(repoMap){
         extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: it.repo ]],
         userRemoteConfigs: [[credentialsId: CRED_ID, url: repourl]]])
 
-        def folder = new File("${it.repo}@tmp")
-        folder.deleteDir()    
+        dir("${it.repo}@temp"){
+            deleteDir()
+        }
     }
    
 }
